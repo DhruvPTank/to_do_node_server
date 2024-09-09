@@ -1,5 +1,3 @@
-const http = require('http');
-const express = require('express');
 const { Sequelize, DataTypes } = require('sequelize');
 
 
@@ -8,7 +6,7 @@ const dataBase = new Sequelize({
     storage: 'database.db'
 })
 
-const dataBaseUser = dataBase.define('dataBaseUser', {
+const User = dataBase.define('User', {
     userID: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -25,14 +23,14 @@ const dataBaseUser = dataBase.define('dataBaseUser', {
 
 },
     {
-        tableName: 'dataBaseUser',
+        tableName: 'User',
         timestamps: false,
         freezeTableName: true,
 
     })
 
 
-const dataBaseUserTask = dataBase.define('dataBaseUserTask', {
+const Tasks = dataBase.define('Tasks', {
     taskID: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -44,7 +42,7 @@ const dataBaseUserTask = dataBase.define('dataBaseUserTask', {
         type: DataTypes.INTEGER,
         allowNull: false,
         refrences: {
-            model: dataBaseUser,
+            model: User,
             key: 'userID'
         }
     },
@@ -59,17 +57,17 @@ const dataBaseUserTask = dataBase.define('dataBaseUserTask', {
     }
 },
     {
-        tableName: 'dataBaseUserTask',
+        tableName: 'Tasks',
         timestamps: false,
         freezeTableName: true,
 
     })
 
-dataBase.sync({ force : true })
+dataBase.sync({ force: true })
 
 module.exports = {
     dataBase,
-    dataBaseUser,
-    dataBaseUserTask
+    User,
+    Tasks
 }
 
