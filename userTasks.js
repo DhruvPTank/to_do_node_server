@@ -52,7 +52,7 @@ router.delete("/deletetask/:userId/:id", async (req, res) => {
     res.send("Task deleted");
 });
 
-router.put("/updatetask/:userId/:id", async (req, res) => {
+router.put("/updatetask/:userId/:taskId", async (req, res) => {
     const { userId, taskId } = req.params;
     const { taskName, taskDescription } = req.body;
 
