@@ -1,10 +1,21 @@
+// const { PostgresDialect } = require('@sequelize/postgres');
 const { Sequelize, DataTypes } = require('sequelize');
 
 
-const dataBase = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'database.db'
-})
+// DATABASE CONNECTIVITY WITH POSTGRES
+
+const dataBase = new Sequelize('database', 'postgres', '12345678', {
+    host: 'localhost',
+    dialect: 'postgres'
+});
+
+//DATABASE CONNECTIVITY WITH SQLITE3
+
+// const dataBase = new Sequelize({
+//     dialect: 'sqlite',
+//     storage: 'database.db'
+// })
+
 
 const User = dataBase.define('User', {
     userID: {
@@ -16,7 +27,7 @@ const User = dataBase.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    userPassword: {
+    password: {
         type: DataTypes.STRING,
         alloeNull: false,
     }
@@ -38,7 +49,7 @@ const Tasks = dataBase.define('Tasks', {
         primaryKey: true,
     },
 
-    UserId: {
+    userID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         refrences: {
@@ -51,7 +62,7 @@ const Tasks = dataBase.define('Tasks', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    taskDescription: {
+    description: {
         type: DataTypes.STRING,
         allowNull: false,
     }

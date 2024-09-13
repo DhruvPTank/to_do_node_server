@@ -1,8 +1,11 @@
 {
   "dependencies": {
+    "@sequelize/postgres": "^7.0.0-alpha.41",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
     "nodemon": "^3.1.4",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.3",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7"

@@ -13,8 +13,8 @@ router.get("/gettask", async (req, res) => {
 
 router.post("/addtask/:userId", async (req, res) => {
     const { userId } = req.params;
-    const { taskName, taskDescription } = req.body;
-    if (!taskName || !taskDescription) {
+    const { taskName, description } = req.body;
+    if (!taskName || !description) {
         return res
             .status(400)
             .json({ error: "Task name and description required" });
@@ -24,9 +24,9 @@ router.post("/addtask/:userId", async (req, res) => {
         return res.status(400).json({ error: "User not exist in database" });
     }
     const newUserTask = await Tasks.create({
-        UserId: userId,
+        userID: userId,
         taskName,
-        taskDescription,
+        description,
     });
     res.send(newUserTask);
 });
@@ -52,32 +52,32 @@ router.delete("/deletetask/:userId/:id", async (req, res) => {
     res.send("Task deleted");
 });
 
-router.put("/updatetask/:userId/:taskId", async (req, res) => {
-    const { userId, taskId } = req.params;
-    const { taskName, taskDescription } = req.body;
+router.put("/updatetask/:Id/:taskId", async (req, res) => {
+    const { Id, taskId } = req.params;
+    const { taskName, description } = req.body;
 
-    if (!taskName || !taskDescription) {
+    if (!taskName || !description) {
         return res
             .status(400)
             .json({ error: "Task and description required for update" });
     }
 
     const myTask = await Tasks.findOne({
-        where: { taskID: taskId, UserId: userId },
+        where: { taskID: taskId, userID: Id },
     });
 
     if (!myTask) {
         return res.status(404).json({ error: "Task not found" });
     }
 
-    const user = await User.findOne({ where: { UserId: userId } });
+    const user = await User.findOne({ where: { userID: Id } });
     if (!user) {
         return res.status(404).json({ error: "User not found" });
     }
 
     await Tasks.update(
-        { taskName, taskDescription },
-        { where: { taskID: taskId, UserId: userId } }
+        { taskName, description },
+        { where: { taskID: taskId, userID: Id } }
     );
 
     res.send(req.body);
