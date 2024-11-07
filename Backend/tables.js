@@ -74,7 +74,7 @@ const Tasks = dataBase.define('Tasks', {
 
     })
 
-dataBase.sync({ force: true })
+dataBase.sync({ alter: true })
 
 module.exports = {
     dataBase,

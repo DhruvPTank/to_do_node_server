@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bodyParser = require("body-parser");
-const { User, Tasks } = require("./data_tables");
+const { User, Tasks } = require("./tables");
 
 const app = express();
 app.use(bodyParser.json());

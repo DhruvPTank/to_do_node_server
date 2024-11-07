@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bodyParser = require('body-parser');
-const { User } = require('./data_tables');
+const { User } = require('./tables');
 
 //requirement and code for the database users like CRUD operations of that particlar users
 const app = express();

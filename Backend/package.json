@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@mui/material": "^6.1.0",
     "@sequelize/postgres": "^7.0.0-alpha.41",
     "body-parser": "^1.20.2",
     "express": "^4.19.2",
